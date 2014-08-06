@@ -26,14 +26,20 @@ namespace Parallel_Rep
         // スレッド数固定時のデータの最大数
         static readonly int MaxDataNum = 10000000;
 
-        // コンストラクタ
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public MultiThreadForm()
         {
             InitializeComponent();
             chart.Series.Clear();
         }
 
-        // 処理開始のボタンが押されたとき
+        /// <summary>
+        /// 「処理開始」ボタンが押されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_start_Click(object sender, EventArgs e)
         {
             // 処理が終わるまで「処理開始」ボタンを押せないようにする
@@ -206,7 +212,11 @@ namespace Parallel_Rep
             chart.Series.Add(ser);
         }
 
-        // データ数固定が選択されたとき
+        /// <summary>
+        /// データ数固定が選択されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButton_データ数固定_CheckedChanged(object sender, EventArgs e)
         {
             var flag = radioButton_データ数固定.Checked;
@@ -215,7 +225,11 @@ namespace Parallel_Rep
             numericUpDown_データ数固定.Enabled = flag;
         }
 
-        // スレッド数固定が選択されたとき
+        /// <summary>
+        /// スレッド数固定が選択されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButton_スレッド数固定_CheckedChanged(object sender, EventArgs e)
         {
             var flag = radioButton_スレッド数固定.Checked;
@@ -226,13 +240,20 @@ namespace Parallel_Rep
             numericUpDown_スレッド数固定_最大値.Enabled = flag;
         }
 
-        // 実行ログに文字列を追加する
+        /// <summary>
+        /// 実行ログに文字列を追加する
+        /// </summary>
+        /// <param name="str">追加する文字列</param>
         public void AddLog(string str)
         {
             textBox1.AppendText(str + "\r\n");
         }
 
-        // ログクリアボタンが押されたとき
+        /// <summary>
+        /// 「ログクリア」ボタンが押されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_ログクリア_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
@@ -245,10 +266,24 @@ namespace Parallel_Rep
     /// </summary>
     public class ProcessResult
     {
-        public int DataNum { get; set; }            // データの数
-        public int ThreadNum { get; set; }          // スレッドの数
+        /// <summary>
+        /// データ数
+        /// </summary>
+        public int DataNum { get; set; }
 
-        public TimeSpan AverageTime { get; set; }   // 平均値
-        public TimeSpan MedianTime { get; set; }    // 中央値
+        /// <summary>
+        /// スレッド数
+        /// </summary>
+        public int ThreadNum { get; set; }
+
+        /// <summary>
+        /// 時間の平均値
+        /// </summary>
+        public TimeSpan AverageTime { get; set; }
+
+        /// <summary>
+        /// 時間の中央値
+        /// </summary>
+        public TimeSpan MedianTime { get; set; }
     }
 }
