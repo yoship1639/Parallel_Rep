@@ -123,6 +123,12 @@
   <data name="AxisX_Title_データ数固定時" xml:space="preserve">
     <value>スレッド数</value>
   </data>
+  <data name="Button_表示切替_中央値" xml:space="preserve">
+    <value>表示：中央値</value>
+  </data>
+  <data name="Button_表示切替_平均値" xml:space="preserve">
+    <value>表示：平均値</value>
+  </data>
   <data name="Title_スレッド数固定時" xml:space="preserve">
     <value>スレッド数を固定しデータ数を変化させたとき、処理に掛かった時間</value>
   </data>

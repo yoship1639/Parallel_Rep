@@ -79,6 +79,24 @@ namespace Parallel_Rep.Properties {
         }
         
         /// <summary>
+        ///   表示：中央値 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Button_表示切替_中央値 {
+            get {
+                return ResourceManager.GetString("Button_表示切替_中央値", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   表示：平均値 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Button_表示切替_平均値 {
+            get {
+                return ResourceManager.GetString("Button_表示切替_平均値", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   スレッド数を固定しデータ数を変化させたとき、処理に掛かった時間 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Title_スレッド数固定時 {

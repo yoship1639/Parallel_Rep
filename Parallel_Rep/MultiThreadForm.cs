@@ -100,7 +100,10 @@ namespace Parallel_Rep
 
             }
 
-            AddSeries(resultList.ToArray(), radioButton_データ数固定.Checked);
+            AddSeries(
+                resultList.ToArray(),
+                radioButton_データ数固定.Checked,
+                button_グラフ表示切り替え.Text == Properties.Resources.Button_表示切替_平均値);
 
             AddLog("処理完了！");
             AddLog("");
@@ -163,9 +166,11 @@ namespace Parallel_Rep
         /// </summary>
         /// <param name="results">グラフに追加するデータ</param>
         /// <param name="fixedData">データ数固定か</param>
-        private void AddSeries(ProcessResult[] results, bool isFixedData)
+        private void AddSeries(ProcessResult[] results, bool isFixedData, bool isAverage)
         {
+            string strVal = isAverage ? "平均値" : "中央値";
             var ser = new System.Windows.Forms.DataVisualization.Charting.Series();
+            ser.Tag = results;
             ser.BorderWidth = 2;
             ser.MarkerSize = 7;
             ser.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -183,11 +188,19 @@ namespace Parallel_Rep
                     chart.Titles[0].Text = Properties.Resources.Title_データ数固定時;
                 }
 
-                name = "データ数 " + results[0].DataNum + " の平均値";
-                var prev = chart.Series.FindByName(name);
+                // 同一データ数のグラフが存在していたら削除
+                name = "データ数 " + results[0].DataNum + " の" + strVal;
+                System.Windows.Forms.DataVisualization.Charting.Series prev = null;
+                try { prev = chart.Series.First((se) => { return se.Name.Contains(results[0].DataNum.ToString()); }); }
+                catch { }
                 if (prev != null) chart.Series.Remove(prev);
 
-                foreach (var res in results) ser.Points.AddXY(res.ThreadNum, res.AverageTime.TotalMilliseconds);
+                foreach (var res in results)
+                {
+                    if (isAverage) ser.Points.AddXY(res.ThreadNum, res.AverageTime.TotalMilliseconds);
+                    else ser.Points.AddXY(res.ThreadNum, res.MedianTime.TotalMilliseconds);
+                }
+                    
             }
             // スレッド数固定
             else
@@ -201,11 +214,17 @@ namespace Parallel_Rep
                     chart.Titles[0].Text = Properties.Resources.Title_スレッド数固定時;
                 }
 
-                name = "スレッド数 " + results[0].ThreadNum + " の平均値";
-                var prev = chart.Series.FindByName(name);
+                name = "スレッド数 " + results[0].ThreadNum + " の" + strVal;
+                System.Windows.Forms.DataVisualization.Charting.Series prev = null;
+                try { prev = chart.Series.First((se) => { return se.Name.Contains(results[0].ThreadNum.ToString()); }); }
+                catch { }
                 if (prev != null) chart.Series.Remove(prev);
 
-                foreach (var res in results) ser.Points.AddXY(res.DataNum, res.AverageTime.TotalMilliseconds);
+                foreach (var res in results)
+                {
+                    if (isAverage) ser.Points.AddXY(res.DataNum, res.AverageTime.TotalMilliseconds);
+                    else ser.Points.AddXY(res.DataNum, res.MedianTime.TotalMilliseconds);
+                }
             }
 
             ser.Name = name;
@@ -257,6 +276,28 @@ namespace Parallel_Rep
         private void button_ログクリア_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
+        }
+
+        /// <summary>
+        /// 表示切替ボタンが押されたときの処理。
+        /// グラフの表示を平均値と中央値とで切り替える
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_グラフ表示切り替え_Click(object sender, EventArgs e)
+        {
+            if(button_グラフ表示切り替え.Text == Properties.Resources.Button_表示切替_平均値)
+                button_グラフ表示切り替え.Text = Properties.Resources.Button_表示切替_中央値;
+            else button_グラフ表示切り替え.Text = Properties.Resources.Button_表示切替_平均値;
+
+            bool isFixedData = true;
+            try { isFixedData = chart.Series.First((se) => { return se.Name.Contains("データ数"); }) != null; }
+            catch { }
+            var ser = chart.Series.ToArray();
+            foreach (var se in ser)
+            {
+                AddSeries(se.Tag as ProcessResult[], isFixedData, button_グラフ表示切り替え.Text == Properties.Resources.Button_表示切替_平均値);
+            }
         }
 
     }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label_データ数固定_データ数 = new System.Windows.Forms.Label();
             this.radioButton_データ数固定 = new System.Windows.Forms.RadioButton();
@@ -48,6 +48,7 @@
             this.button_ログクリア = new System.Windows.Forms.Button();
             this.numericUpDown_スレッド数固定_最大値 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.button_グラフ表示切り替え = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_データ数固定)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_スレッド数固定)).BeginInit();
@@ -60,35 +61,35 @@
             this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.Maximum = 7D;
-            chartArea1.AxisX.Minimum = 1D;
-            chartArea1.AxisX.Title = "データの数 n (10のn乗)";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            chartArea1.AxisY.Title = "処理に掛かった時間 [ms]";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            chartArea2.AxisX.Maximum = 7D;
+            chartArea2.AxisX.Minimum = 1D;
+            chartArea2.AxisX.Title = "データの数 n (10のn乗)";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            chartArea2.AxisY.Title = "処理に掛かった時間 [ms]";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(14, 265);
             this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series2";
+            this.chart.Series.Add(series3);
+            this.chart.Series.Add(series4);
             this.chart.Size = new System.Drawing.Size(756, 319);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            this.chart.Titles.Add(title1);
+            title2.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            this.chart.Titles.Add(title2);
             // 
             // label_データ数固定_データ数
             // 
@@ -292,10 +293,21 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "最大データ数";
             // 
+            // button_グラフ表示切り替え
+            // 
+            this.button_グラフ表示切り替え.Location = new System.Drawing.Point(290, 231);
+            this.button_グラフ表示切り替え.Name = "button_グラフ表示切り替え";
+            this.button_グラフ表示切り替え.Size = new System.Drawing.Size(97, 27);
+            this.button_グラフ表示切り替え.TabIndex = 24;
+            this.button_グラフ表示切り替え.Text = "表示：平均値";
+            this.button_グラフ表示切り替え.UseVisualStyleBackColor = true;
+            this.button_グラフ表示切り替え.Click += new System.EventHandler(this.button_グラフ表示切り替え_Click);
+            // 
             // MultiThreadForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(784, 602);
+            this.Controls.Add(this.button_グラフ表示切り替え);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown_スレッド数固定_最大値);
             this.Controls.Add(this.button_ログクリア);
@@ -343,6 +355,7 @@
         private System.Windows.Forms.Button button_ログクリア;
         private System.Windows.Forms.NumericUpDown numericUpDown_スレッド数固定_最大値;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button_グラフ表示切り替え;
     }
 }
 
