@@ -292,7 +292,7 @@ namespace Parallel_Rep
 
             bool isFixedData = true;
             try { isFixedData = chart.Series.First((se) => { return se.Name.Contains("データ数"); }) != null; }
-            catch { }
+            catch { isFixedData = false; }
             var ser = chart.Series.ToArray();
             foreach (var se in ser)
             {
